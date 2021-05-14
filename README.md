@@ -8,4 +8,7 @@
 <p>Covid-19_Data is a simple project to visualize Covid-19 updated datas everyday</p>
 <img src="header.png">
 <h2>Prerequisites</h2>
-<p>To use the project you just need to install latest <a href="https://www.oracle.com/java/technologies/javase/jdk15-archive-downloads.html" target="_blank">JRE</a></p>
+<ul>
+  <li>A Full HD monitor</li>
+  <li>The latest version of the <a href="https://www.oracle.com/java/technologies/javase/jdk15-archive-downloads.html" target="_blank">JRE</a></li>
+</ul>
