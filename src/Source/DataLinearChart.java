@@ -2,8 +2,8 @@
  *********************************
  *       2021(c) Project by      *
  *                               * 
- *           Davide Iaci         *
- *         Alessio Zarola        *
+ *           Davide I.           *
+ *           Alessio Z.          *
  *********************************
  */
 package Source;
