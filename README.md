@@ -5,4 +5,4 @@
   <li>Davide I.</li>
 </ul>
 <h2>The Project</h2>
-<a href="header.png"></a>
+<img src="header.png">
