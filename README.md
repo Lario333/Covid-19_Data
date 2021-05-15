@@ -18,7 +18,7 @@
 ```
 |---Covid-19_Data/
 |   |---dist/
-|       |Covid-19_Data.jar
+|       |---Covid-19_Data.jar
 ```
   
 may not refresh daily data, we're working on that!</p>
