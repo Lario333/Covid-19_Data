@@ -8,6 +8,7 @@
  */
 package Source;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -30,23 +31,24 @@ public class DataLinearChart extends JPanel {
     private DefaultCategoryDataset createDataset() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        String title1 = "Morti";
-        String title2 = "Guariti";
-        String title3 = "Positivi";
+        String title1 = "Positivi";
+        String title2 = "Morti";
+        String title3 = "Guariti";
+        
 
         // deaths
         for (int i = 0; i < Main.daysData.size(); i++) {
-            dataset.addValue(Integer.parseInt(Main.daysData.get(i).getDeceduti()), title1, Main.daysData.get(i).getData());
+            dataset.addValue(Integer.parseInt(Main.daysData.get(i).getTotale_casi()), title1, Main.daysData.get(i).getData());
         }
 
         // healed
         for (int i = 0; i < Main.daysData.size(); i++) {
-            dataset.addValue(Integer.parseInt(Main.daysData.get(i).getDimessi_guariti()), title2, Main.daysData.get(i).getData());
+            dataset.addValue(Integer.parseInt(Main.daysData.get(i).getDeceduti()), title2, Main.daysData.get(i).getData());
         }
 
         // positive
         for (int i = 0; i < Main.daysData.size(); i++) {
-            dataset.addValue(Integer.parseInt(Main.daysData.get(i).getTotale_positivi()), title3, Main.daysData.get(i).getData());
+            dataset.addValue(Integer.parseInt(Main.daysData.get(i).getDimessi_guariti()), title3, Main.daysData.get(i).getData());
         }
 
         return dataset;
@@ -60,6 +62,8 @@ public class DataLinearChart extends JPanel {
                 createDataset(),
                 PlotOrientation.VERTICAL,
                 true, true, false);
+        lineChart.setBackgroundPaint(new Color(247, 246, 242));
+        
         return lineChart;
     }
 
