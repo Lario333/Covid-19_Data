@@ -344,7 +344,9 @@ public class Covid19_Frame extends JFrame {
         // Addition of dataLinearChart in the southWestPanel
         dataLinearChartPnl.add(dataLinearChart.createDemoPanel());
         southWestWrapperPanel.add(dataLinearChartPnl);
-
+        // Test
+        southEastWrapperPanel.setLayout(new BorderLayout());
+        
         // If internet connecction is available, addition of italyMap in the
         // southCenterPanel
         if (DataUploader.checkConnection()) {
@@ -383,14 +385,15 @@ public class Covid19_Frame extends JFrame {
 
         // Adding dataLinearChartT to 
         dataLinearChartTPnl.add(dataLinearChartT.createDemoPanel());
-        southEastWrapperPanel.add(dataLinearChartTPnl);
+        southEastWrapperPanel.add(dataLinearChartTPnl , "West");
         
         // Date label
-//        String date = Main.daysData.get(totCap).getData();
-//        date = "Dati aggiornati al "+ date.substring(0 , 10);
-//        lblDate.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
-//        lblDate.setText(date);
-//        southEastWrapperPanel.add(lblDate);
+        String date = Main.daysData.get(totCap).getData();
+        date = "Dati aggiornati al "+ date.substring(0 , 10);
+        lblDate.setHorizontalAlignment(4);
+        lblDate.setText(date);
+        lblDate.setFont(new Font("Arial" , Font.ITALIC, 15));
+        southEastWrapperPanel.add(lblDate , "South");
         
         // Adding mainPanel to contentPane
         this.getContentPane().add(mainPanel);

@@ -30,6 +30,7 @@ public class Main {
         DataUploader loader = new DataUploader(); 
 
         // Download latest data from the COVID Github Repo
+        loader.checkConnection();
         loader.downloadData();
         loader.readCsvGeneralFile(); // upload Covid-Data csv file
         Day.calcDiffData();
