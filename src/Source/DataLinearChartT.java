@@ -8,6 +8,7 @@
  */
 package Source;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -48,6 +49,8 @@ public class DataLinearChartT extends JPanel {
                 createDataset(),
                 PlotOrientation.VERTICAL,
                 true, true, false);
+        lineChart.setBackgroundPaint(new Color(247, 246, 242));
+        
         return lineChart;
     }
 
