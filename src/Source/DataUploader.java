@@ -37,6 +37,8 @@ import java.io.FileWriter;
  */
 public class DataUploader {
 
+    String path = "src/Data/Italia-trend-giornaliero.csv";
+
     /**
      * Method to download covid data from the official COVID Github Repo and write it into the csv data file
      * 
@@ -44,7 +46,8 @@ public class DataUploader {
      */
     public void downloadData() throws IOException {
         this.clearData();
-        FileWriter fw = new FileWriter("src/Data/Italia-trend-giornaliero.csv", true);
+         FileWriter fw = new FileWriter(path, true);
+        
         Document doc = Jsoup.connect("https://github.com/pcm-dpc/COVID-19/blob/master/dati-andamento-nazionale/dpc-covid19-ita-andamento-nazionale.csv").get();
         Elements codes = doc.select("tr[class=js-file-line]");
         // initializing length
@@ -95,7 +98,7 @@ public class DataUploader {
      * Clears csv file
      */
     private void clearData() throws IOException {
-        FileWriter fw = new FileWriter("src/Data/Italia-trend-giornaliero.csv");
+        FileWriter fw = new FileWriter(path);
         fw.write("");
         fw.close();
     }
@@ -107,7 +110,7 @@ public class DataUploader {
     public void readCsvGeneralFile(){
         String line;
         try{
-            BufferedReader br = new BufferedReader(new FileReader("src/Data/Italia-trend-giornaliero.csv"));
+             BufferedReader br = new BufferedReader(new FileReader(path));
             br.readLine();
             while((line = br.readLine()) != null){
                 // System.out.println(line);
@@ -130,27 +133,12 @@ public class DataUploader {
      */
     public BufferedImage uploadImage(String position) {
         BufferedImage image = null;
-        BufferedImage convertedImage = null;// è l'immagine convertita in TYPE_4BYTE_AGBR in modo che tutte le immagini
-                                            // possano essere colorate successivamente
+        BufferedImage convertedImage = null;// is the image converted to TYPE_4BYTE_AGBR so that all images can be colored later
         try {
-            image = ImageIO.read(getClass().getResource(position)); // viene salvata l'immagine dato il percorso
-            // conversione dell'immagine image
-            convertedImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_4BYTE_ABGR); // convertedImage
-                                                                                                                    // prende
-                                                                                                                    // la
-                                                                                                                    // stessa
-                                                                                                                    // larghezza
-                                                                                                                    // e
-                                                                                                                    // altezza
-                                                                                                                    // di
-                                                                                                                    // image,
-                                                                                                                    // ma
-                                                                                                                    // viene
-                                                                                                                    // cambiato
-                                                                                                                    // il
-                                                                                                                    // tipo
-            convertedImage.getGraphics().drawImage(image, 0, 0, null); // il contenuto di convertedImage diventa quello
-                                                                       // di image
+            image = ImageIO.read(getClass().getResource(position)); // save image
+            // conversion
+            convertedImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_4BYTE_ABGR); // convertedImage has the same dimensiuon and contentr but change the image type
+            convertedImage.getGraphics().drawImage(image, 0, 0, null); // the content of convertedImage becomes that of image
         } catch (IOException ex) {
             Logger.getLogger(DataUploader.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -164,10 +152,7 @@ public class DataUploader {
     public void readRegionsColorsWebPage() {
         try {
             URL url = new URL(
-                    "https://www.salute.gov.it/portale/nuovocoronavirus/dettaglioContenutiNuovoCoronavirus.jsp?lingua=italiano&id=5351&area=nuovoCoronavirus&menu=vuoto"); // url
-                                                                                                                                                                           // of
-                                                                                                                                                                           // web
-                                                                                                                                                                           // site
+                    "https://www.salute.gov.it/portale/nuovocoronavirus/dettaglioContenutiNuovoCoronavirus.jsp?lingua=italiano&id=5351&area=nuovoCoronavirus&menu=vuoto"); // website's url
             BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
 
             String line; // single line of source from website
