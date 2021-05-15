@@ -1,4 +1,11 @@
 # Covid-19_Data
+<head>
+  <style type="text/css">
+  h2 {
+      color:#069;
+  }
+  </style>  
+</head>
 <h2>Authors</h2>
 <ul>
   <li>Alessio Z.</li>
@@ -12,3 +19,4 @@
   <li>A Full HD monitor</li>
   <li>The latest version of the <a href="https://www.oracle.com/java/technologies/javase/jdk15-archive-downloads.html" target="_blank">JRE</a></li>
 </ul>
+<h2>WARNING</h2>
