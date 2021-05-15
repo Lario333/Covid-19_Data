@@ -4,12 +4,11 @@
 <img src="readme_header.png">
 <h2>How to use</h2>
 <p>To use the program just open the "dist" folder and run the .jar file</p>
+
 ```
-|
-|---Covid-19_Data\
-|   |---dist\
-|       |Covid-19_Data.jar <----
-|
+|---Covid-19_Data/
+|   |---dist/
+|       |---Covid-19_Data.jar
 ```
 <h2>Authors</h2>
 <ul>
