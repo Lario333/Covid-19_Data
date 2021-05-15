@@ -10,7 +10,7 @@
 <h2>Prerequisites</h2>
 <ul>
   <li>A Full HD monitor</li>
-  <li>The latest version of the <a href="https://www.oracle.com/java/technologies/javase/jdk15-archive-downloads.html" target="_blank">JRE</a></li>
+  <li>The latest version of the <a href="https://www.oracle.com/java/technologies/javase-jdk16-downloads.html" target="_blank">JDK</a></li>
 </ul>
 <h1>WARNING</h1>
 <p> The .jar file located in 
