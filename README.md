@@ -1,9 +1,4 @@
 # Covid-19_Data
-<style type="text/css">
-h2 {
-    color:#069;
-}
-</style>
 <h2>Authors</h2>
 <ul>
   <li>Alessio Z.</li>
