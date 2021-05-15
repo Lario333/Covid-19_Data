@@ -40,7 +40,7 @@ public class Main {
         frame.setBackground(new Color(247,246,242)); 
         frame.setTitle("Covid Graphs");
         frame.setResizable(false);
-        frame.setSize(1500, 850);
+        frame.setSize(1455, 850);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
