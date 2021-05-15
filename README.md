@@ -13,4 +13,12 @@
   <li>The latest version of the <a href="https://www.oracle.com/java/technologies/javase/jdk15-archive-downloads.html" target="_blank">JRE</a></li>
 </ul>
 <h1>WARNING</h1>
-<p> The .jar file located in dist/Covid-19_Data.jar may not refresh daily data, we're working on that!</p>
+<p> The .jar file located in 
+
+```
+|---Covid-19_Data/
+|   |---dist/
+|       |Covid-19_Data.jar
+```
+  
+may not refresh daily data, we're working on that!</p>
