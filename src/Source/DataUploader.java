@@ -38,9 +38,8 @@ import java.io.FileWriter;
 public class DataUploader {
 
     /**
-     * Method to download covid data from the official COVID Github Repo
+     * Method to download covid data from the official COVID Github Repo and write it into the csv data file
      * 
-     * @return content
      * @throws IOException
      */
     public void downloadData() throws IOException {
@@ -51,12 +50,12 @@ public class DataUploader {
         // initializing length
         int length = 0;
 
-        // CODES = All LCS
+        // CODES = All LCs
         // CODE = ONE LC
         for (Element code : codes) {
             Elements children = code.children();
-            // CHILDREN = ALL TD or TH OF A LC
-            // CHILD = ONE TD OF A LC
+            // CHILDREN = ALL TD or TH OF An LC
+            // CHILD = ONE TD OF An LC
             length = children.size() - 1;
             for (Element child : children) {
                 // HEADER ( LC1 )
