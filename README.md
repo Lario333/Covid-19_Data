@@ -21,4 +21,4 @@
 |       |---Covid-19_Data.jar
 ```
   
-may not refresh daily data, if you experience any issue, report it here!</p>
+may not refresh daily data, if you experience any issue, report it <a href="https://github.com/Lario333/Covid-19_Data/issues">here!</a></p>
