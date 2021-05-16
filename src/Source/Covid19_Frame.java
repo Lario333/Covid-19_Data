@@ -11,8 +11,10 @@ package Source;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.math.RoundingMode;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -106,14 +108,7 @@ public class Covid19_Frame extends JFrame {
      */
     public Covid19_Frame() {
 
-        // Refresh button
-        refreshBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("test");
-            }
-        });
-        refreshBtn.setSize(new Dimension(30,30));
+
 
         // total capacity of daysData vector
         int totCap = Main.daysData.size() - 1;
@@ -406,12 +401,58 @@ public class Covid19_Frame extends JFrame {
         String date = Main.daysData.get(totCap).getData();
         date = Main.useLanguage.getActiveLanguage().getDateLbl() + date.substring(0 , 10);
         lblDate.setHorizontalAlignment(4);
+        lblDate.setHorizontalAlignment(4);
         lblDate.setText(date);
         lblDate.setFont(new Font("Arial" , Font.ITALIC, 15));
 
-        southEastWrapperPanel.add(lblDate , "South");
+        JPanel southEastnanoComponentsPanel = new JPanel();
+        southEastWrapperPanel.add(southEastnanoComponentsPanel , "South");
+
+        southEastnanoComponentsPanel.setLayout(new BorderLayout());
+
+        JLabel blank = new JLabel("");
+        blank.setBorder(new EmptyBorder(0,0,32,0));
+
+        // Refresh button
+        refreshBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DataUploader d = new DataUploader();
+                try{
+                    d.downloadData();
+                    d.readCsvGeneralFile();
+                    Day.calcDiffData();
+
+                    clearFrame();
+
+                } catch(Exception ex ){
+                    ex.printStackTrace();
+                }
+            }
+        });
+        refreshBtn.setSize(new Dimension(40,40));
+        refreshBtn.setBackground(new Color(247,246,242));
+        southEastnanoComponentsPanel.add(refreshBtn , "West");
+        southEastnanoComponentsPanel.add(blank , "West");
+
+        southEastnanoComponentsPanel.add(lblDate , "South");
+
+
 
         // Adding mainPanel to contentPane
         this.getContentPane().add(mainPanel);
+    }
+
+    public void clearFrame(){
+        this.setVisible(false);
+
+        Covid19_Frame frame = new Covid19_Frame();
+        frame.setBackground(new Color(247,246,242));
+        frame.setTitle("Covid Graphs");
+        frame.setResizable(false);
+        frame.setSize(1455, 850);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
