@@ -55,7 +55,6 @@ public class DataUploader {
         } catch(Exception e){
             e.printStackTrace();
         }
-        System.out.println(lang);
         return lang;
     }
 
