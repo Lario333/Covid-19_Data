@@ -38,6 +38,27 @@ public class DataUploader {
 
     String path = "src/Data/Italia-trend-giornaliero.csv";
 
+
+    /**
+     * Method to read the language to set to the program in settings.txt file
+     * @return
+     */
+    public String checkLanguage(){
+        String lang = "";
+        String read = "";
+        try{
+            FileReader fr = new FileReader("src/../settings.txt");
+            BufferedReader b = new BufferedReader(fr);
+            read = b.readLine();
+            read = read.replaceAll(" " , "");
+            lang = read.substring(9);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        System.out.println(lang);
+        return lang;
+    }
+
     /**
      * Method to download covid data from the official COVID Github Repo and write it into the csv data file
      * 

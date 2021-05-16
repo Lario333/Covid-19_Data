@@ -8,16 +8,13 @@
  */
 package Source;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
@@ -35,7 +32,7 @@ public class DataLinearChartT extends JPanel {
     private DefaultCategoryDataset createDataset() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        String title = "Tamponi";
+        String title = Main.useLanguage.getActiveLanguage().getT();
 
         for (int i = 0; i < Main.daysData.size(); i++) {
             dataset.addValue(Integer.parseInt(Main.daysData.get(i).getTamponi()), title, Main.daysData.get(i).getData());
@@ -48,21 +45,12 @@ public class DataLinearChartT extends JPanel {
     private JFreeChart createChart(DefaultCategoryDataset dataset) {
         JFreeChart lineChart = ChartFactory.createLineChart(
                 null,
-                "Tempo", "Dati",
+                Main.useLanguage.getActiveLanguage().getTem(), Main.useLanguage.getActiveLanguage().getD(),
                 createDataset(),
                 PlotOrientation.VERTICAL,
                 true, true, false);
         lineChart.setBackgroundPaint(new Color(247, 246, 242));
-
-        CategoryPlot plot = lineChart.getCategoryPlot();
-        LineAndShapeRenderer renderer = new LineAndShapeRenderer(true, false);
-        // change of color lines
-        renderer.setSeriesPaint(0, new Color(247, 128, 128));
-        // change of line thickness
-        renderer.setSeriesStroke(0, new BasicStroke(1.5f));
-
-        plot.setRenderer(renderer);
-
+        
         return lineChart;
     }
 

@@ -20,18 +20,25 @@ public class Main {
 
     static ArrayList<Day> daysData = new ArrayList<Day>();
 
+    static Languages useLanguage = new Languages(Languages.eng);
+    // Uncomment this for english ^
+    // static Languages useLanguage = new Languages(Languages.ita);
+    // Uncomment this for ita
     /**
      * Main that will run the program
      * 
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-    	
+
+
+
         DataUploader loader = new DataUploader(); 
 
         // Download latest data from the COVID Github Repo
         loader.downloadData();
         loader.readCsvGeneralFile(); // upload Covid-Data csv file
+        useLanguage.setActiveLanguage(loader.checkLanguage());
         Day.calcDiffData();
         // Creating the frame
         Covid19_Frame frame = new Covid19_Frame();

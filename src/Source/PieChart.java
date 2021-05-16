@@ -34,16 +34,16 @@ public class PieChart extends JPanel {
     private PieDataset createDataset() {
         DefaultPieDataset dataset = new DefaultPieDataset();
 
-        dataset.setValue("Ricoverati con sintomi", Double.parseDouble(Main.daysData.get(Main.daysData.size() - 1).getRicoverati_con_sintomi()));
-        dataset.setValue("Isolamento domiciliare", Double.parseDouble(Main.daysData.get(Main.daysData.size() - 1).getIsolamento_domiciliare()));
-        dataset.setValue("Terapia intensiva", Double.parseDouble(Main.daysData.get(Main.daysData.size() - 1).getTerapia_intensiva()));
+        dataset.setValue(Main.useLanguage.getActiveLanguage().getR_c_s(), Double.parseDouble(Main.daysData.get(Main.daysData.size() - 1).getRicoverati_con_sintomi()));
+        dataset.setValue(Main.useLanguage.getActiveLanguage().getI_d(), Double.parseDouble(Main.daysData.get(Main.daysData.size() - 1).getIsolamento_domiciliare()));
+        dataset.setValue(Main.useLanguage.getActiveLanguage().getTi(), Double.parseDouble(Main.daysData.get(Main.daysData.size() - 1).getTerapia_intensiva()));
 
         return dataset;
     }
 
     // create of the object chart
     private JFreeChart createChart(PieDataset dataset) {
-        JFreeChart pieChart = ChartFactory.createPieChart("Nuovi casi", // chart title
+        JFreeChart pieChart = ChartFactory.createPieChart(Main.useLanguage.getActiveLanguage().getNc(), // chart title
                 dataset, // data
                 true, // include legend
                 true, // tooltips

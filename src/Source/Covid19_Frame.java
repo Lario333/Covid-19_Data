@@ -9,6 +9,8 @@
 package Source;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.math.RoundingMode;
 import javax.swing.*;
 import java.text.DecimalFormat;
@@ -56,15 +58,18 @@ public class Covid19_Frame extends JFrame {
     private JPanel dataLinearChartTPnl = new JPanel(); // linear chart of tampons
     private DataLinearChartT dataLinearChartT = new DataLinearChartT(); // dataLinearChart Object
 
+    // Refresh button
+    JButton refreshBtn = new JButton("");
+
     // ----------------------------------------------
     // --------------------- TITLE LABELS ---------------------
     // Date Labels
-    private JLabel lblPositivi = new JLabel("Positivi", SwingConstants.CENTER);
-    private JLabel lblMorti = new JLabel("Morti", SwingConstants.CENTER);
-    private JLabel lblGuariti = new JLabel("Guariti", SwingConstants.CENTER);
-    private JLabel lblT_I = new JLabel("Terapia Intensiva", SwingConstants.CENTER);
-    private JLabel lblRicoverati = new JLabel("Ricoverati", SwingConstants.CENTER);
-    private JLabel lblTamponi = new JLabel("Tamponi", SwingConstants.CENTER);
+    private JLabel lblPositivi = new JLabel( Main.useLanguage.getActiveLanguage().getP() , SwingConstants.CENTER);
+    private JLabel lblMorti = new JLabel(Main.useLanguage.getActiveLanguage().getM(), SwingConstants.CENTER);
+    private JLabel lblGuariti = new JLabel(Main.useLanguage.getActiveLanguage().getG(), SwingConstants.CENTER);
+    private JLabel lblT_I = new JLabel(Main.useLanguage.getActiveLanguage().getTi(), SwingConstants.CENTER);
+    private JLabel lblRicoverati = new JLabel(Main.useLanguage.getActiveLanguage().getR(), SwingConstants.CENTER);
+    private JLabel lblTamponi = new JLabel(Main.useLanguage.getActiveLanguage().getT(), SwingConstants.CENTER);
 
     // Date Difference Labels
     private JLabel lblDiffPositivi = new JLabel();
@@ -100,6 +105,15 @@ public class Covid19_Frame extends JFrame {
      * Constructor
      */
     public Covid19_Frame() {
+
+        // Refresh button
+        refreshBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("test");
+            }
+        });
+        refreshBtn.setSize(new Dimension(30,30));
 
         // total capacity of daysData vector
         int totCap = Main.daysData.size() - 1;
@@ -290,12 +304,12 @@ public class Covid19_Frame extends JFrame {
         lblTotRicoverati.setText(formatter.format(Integer.parseInt(lblTotRicoverati.getText())));
         lblTotTamponi.setText(formatter.format(Integer.parseInt(lblTotTamponi.getText())));
         // Adding "totali" before the formatted number
-        lblTotPositivi.setText("Totali " + lblTotPositivi.getText());
-        lblTotMorti.setText("Totali " + lblTotMorti.getText());
-        lblTotGuariti.setText("Totali " + lblTotGuariti.getText());
-        lblTotT_I.setText("Totali " + lblTotT_I.getText());
-        lblTotRicoverati.setText("Totali " + lblTotRicoverati.getText());
-        lblTotTamponi.setText("Totali " + lblTotTamponi.getText());
+        lblTotPositivi.setText(Main.useLanguage.getActiveLanguage().getTot() + " " + lblTotPositivi.getText());
+        lblTotMorti.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotMorti.getText());
+        lblTotGuariti.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotGuariti.getText());
+        lblTotT_I.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotT_I.getText());
+        lblTotRicoverati.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotRicoverati.getText());
+        lblTotTamponi.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotTamponi.getText());
         // Settings total data labels FOREGROUND
         lblTotPositivi.setForeground(Color.red);
         lblTotMorti.setForeground(Color.darkGray);
@@ -344,6 +358,7 @@ public class Covid19_Frame extends JFrame {
         // Addition of dataLinearChart in the southWestPanel
         dataLinearChartPnl.add(dataLinearChart.createDemoPanel());
         southWestWrapperPanel.add(dataLinearChartPnl);
+
         // Test
         southEastWrapperPanel.setLayout(new BorderLayout());
         
@@ -389,12 +404,13 @@ public class Covid19_Frame extends JFrame {
         
         // Date label
         String date = Main.daysData.get(totCap).getData();
-        date = "Dati aggiornati al "+ date.substring(0 , 10);
+        date = Main.useLanguage.getActiveLanguage().getDateLbl() + date.substring(0 , 10);
         lblDate.setHorizontalAlignment(4);
         lblDate.setText(date);
         lblDate.setFont(new Font("Arial" , Font.ITALIC, 15));
+
         southEastWrapperPanel.add(lblDate , "South");
-        
+
         // Adding mainPanel to contentPane
         this.getContentPane().add(mainPanel);
     }
