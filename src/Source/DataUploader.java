@@ -37,7 +37,7 @@ import java.io.FileWriter;
 public class DataUploader {
 
     String path = "src/Data/Italia-trend-giornaliero.csv";
-
+    String settingsPath = "src/../settings.txt";
 
     /**
      * Method to read the language to set to the program in settings.txt file
@@ -47,7 +47,7 @@ public class DataUploader {
         String lang = "";
         String read = "";
         try{
-            FileReader fr = new FileReader("src/../settings.txt");
+            FileReader fr = new FileReader(settingsPath);
             BufferedReader b = new BufferedReader(fr);
             read = b.readLine();
             read = read.replaceAll(" " , "");
