@@ -20,10 +20,19 @@ public class Languages {
         languages.add(eng);
     }
 
+    /**
+     * Return the active lenguage
+     * 
+     * @return the active lenguage
+     */
     public Language getActiveLanguage() {
         return activeLanguage;
     }
 
+    /**
+     * Set the active lenguage
+     * @param title 
+     */
     public void setActiveLanguage(String title) {
         for(int i = 0 ; i < (languages.size()); i++){
             if (title.equals(languages.get(i).getTitle())){
@@ -31,6 +40,5 @@ public class Languages {
                 break;
             }
         }
-
     }
 }
