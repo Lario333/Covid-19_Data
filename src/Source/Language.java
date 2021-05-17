@@ -5,7 +5,20 @@ public class Language {
     String p , m , g , ti, r , t , nc , d, tot, tem, dateLbl , r_c_s, i_d;
     /**
      * Constructor
-     * @param p , m , g , ti, r , t , nc , d, tot, tem, dateLbl
+     * @param title
+     * @param p
+     * @param m
+     * @param g
+     * @param ti
+     * @param r
+     * @param t
+     * @param nc
+     * @param d
+     * @param tot
+     * @param tem
+     * @param dateLbl
+     * @param rcs
+     * @param i_d 
      */
     public Language(String title, String p, String m, String g, String ti, String r, String t, String nc, String d, String tot, String tem, String dateLbl , String rcs , String i_d) {
         super();
@@ -33,6 +46,7 @@ public class Language {
         this.title = title;
     }
 
+    // getter and setter
     public String getTitle() {
         return title;
     }
