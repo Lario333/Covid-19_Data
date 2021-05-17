@@ -357,43 +357,19 @@ public class Covid19_Frame extends JFrame {
         // Test
         southEastWrapperPanel.setLayout(new BorderLayout());
         
-        // If internet connecction is available, addition of italyMap in the
-        // southCenterPanel
-        if (DataUploader.checkConnection()) {
-            /*
+        // Addition of italyMap in the southCenterPanel
+        /*
              * Addition of DataLinearChartT in the southEastPanel 70 value is obtained by
              * (italyMap.getHeight() - dataLinearChart.getHeight()) / 2) for place the
              * graphics in the center of italyMap in the Y axis
-             */
-            dataLinearChartPnl.setBorder(BorderFactory.createEmptyBorder(70, 0, 0, 0));
-            dataLinearChartTPnl.setBorder(BorderFactory.createEmptyBorder(70, 0, 0, 0));
+         */
+        dataLinearChartPnl.setBorder(BorderFactory.createEmptyBorder(70, 0, 0, 0));
+        dataLinearChartTPnl.setBorder(BorderFactory.createEmptyBorder(70, 0, 0, 0));
+        ItalyMap italyMap = new ItalyMap(); // ItalyMap Object
+        italyMapPanel.add(italyMap);
+        southCenterWrapperPanel.add(italyMapPanel);
 
-            ItalyMap italyMap = new ItalyMap(); // ItalyMap Object
-            italyMapPanel.add(italyMap);
-            southCenterWrapperPanel.add(italyMapPanel);
-        } else { // if internet connection is not available
-            // Creation of JDialog with a warning message
-            int yn = JOptionPane.showConfirmDialog(null,
-                    "        Sembrano esserci problemi di connessione all'indirizzo http://www.salute.gov.it \nSi desidera avviare ugualmente il programma?(alcune funzionalità non saranno disponibili)",
-                    "Errore di connessione", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-            // if user click "no" program will be interrupted
-            if (yn == JOptionPane.NO_OPTION) {
-                System.exit(0);
-            }
-
-            // Creation of an error message in the frame
-            JLabel lblInternetError = new JLabel(
-                    "<html>&nbsp;&nbsp;&nbsp;&nbsp;Impossibile visualizzare il grafico<BR>Controllare la connessione ad internet!</html>"); // use
-            // of
-            // html
-            // tag
-            lblInternetError.setForeground(Color.red);
-            lblInternetError.setFont(new Font("San Serif", Font.BOLD, 18));
-            italyMapPanel.add(lblInternetError);
-            southCenterWrapperPanel.add(italyMapPanel);
-        }
-
-        // Adding dataLinearChartT to 
+        // Adding dataLinearChartT to southEastWrapperPanel
         dataLinearChartTPnl.add(dataLinearChartT.createDemoPanel());
         southEastWrapperPanel.add(dataLinearChartTPnl , "West");
         
