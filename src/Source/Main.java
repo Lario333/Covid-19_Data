@@ -20,10 +20,10 @@ public class Main {
 
     static ArrayList<Day> daysData = new ArrayList<Day>();
 
-    static Languages useLanguage = new Languages(Languages.eng);
-    // Uncomment this for english ^
-    // static Languages useLanguage = new Languages(Languages.ita);
-    // Uncomment this for ita
+    static Languages useLanguage = new Languages(Languages.ita);
+    // Uncomment this for ita ^
+    // static Languages useLanguage = new Languages(Languages.eng);
+    // Uncomment this for english
     /**
      * Main that will run the program
      * 
