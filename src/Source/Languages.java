@@ -25,7 +25,7 @@ public class Languages {
     }
 
     public void setActiveLanguage(String title) {
-        for(int i = 0 ; i < (languages.size() - 1); i++){
+        for(int i = 0 ; i < (languages.size()); i++){
             if (title.equals(languages.get(i).getTitle())){
                 this.activeLanguage = languages.get(i);
                 break;
