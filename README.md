@@ -21,13 +21,12 @@
   <li>The latest version of the <a href="https://www.oracle.com/java/technologies/javase-jdk16-downloads.html" target="_blank">JDK</a></li>
 </ul>
 <h2>Languages</h2>
-<p>To change language change it in 
+<p>To change language change it in settings.txt , now available only Italian and English</p>
   
 ```
 |---Covid-19_Data/
 |   |---settings.txt
 ```
-, now available only Italian and English</p>
 <h2>Issues</h2>
 <p>If you experience any issue with the program report it <a href="https://github.com/Lario333/Covid-19_Data/issues">here!</a></p>
 
