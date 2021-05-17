@@ -409,7 +409,7 @@ public class Covid19_Frame extends JFrame {
         refreshBtn.setSize(new Dimension(40,40));
 //        refreshBtn.setBackground(new Color(247,246,242));
         try{
-            refreshBtn.setIcon(new ImageIcon("src/Data/Regions/refresh_image.png"));
+            refreshBtn.setIcon(new ImageIcon("src/Data/refresh_image.png"));
         } catch( Exception e ){
             e.printStackTrace();
         }
