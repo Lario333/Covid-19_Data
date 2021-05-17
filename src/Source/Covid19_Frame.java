@@ -61,7 +61,7 @@ public class Covid19_Frame extends JFrame {
     private DataLinearChartT dataLinearChartT = new DataLinearChartT(); // dataLinearChart Object
 
     // Refresh button
-    JButton refreshBtn = new JButton("");
+    JButton refreshBtn = new JButton();
 
     // ----------------------------------------------
     // --------------------- TITLE LABELS ---------------------
@@ -407,7 +407,13 @@ public class Covid19_Frame extends JFrame {
             }
         });
         refreshBtn.setSize(new Dimension(40,40));
-        refreshBtn.setBackground(new Color(247,246,242));
+//        refreshBtn.setBackground(new Color(247,246,242));
+        try{
+            refreshBtn.setIcon(new ImageIcon("src/Data/Regions/refresh_image.png"));
+        } catch( Exception e ){
+            e.printStackTrace();
+        }
+        
         southEastnanoComponentsPanel.add(refreshBtn , "West");
         southEastnanoComponentsPanel.add(blank , "West");
 
