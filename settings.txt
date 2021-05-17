@@ -1,4 +1,4 @@
-Language = ENG
+Language = IT
 
 // ENG for english
 // IT for italian
