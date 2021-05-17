@@ -9,12 +9,8 @@
 package Source;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.math.RoundingMode;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -60,18 +56,15 @@ public class Covid19_Frame extends JFrame {
     private JPanel dataLinearChartTPnl = new JPanel(); // linear chart of tampons
     private DataLinearChartT dataLinearChartT = new DataLinearChartT(); // dataLinearChart Object
 
-    // Refresh button
-    JButton refreshBtn = new JButton("");
-
     // ----------------------------------------------
     // --------------------- TITLE LABELS ---------------------
     // Date Labels
-    private JLabel lblPositivi = new JLabel( Main.useLanguage.getActiveLanguage().getP() , SwingConstants.CENTER);
-    private JLabel lblMorti = new JLabel(Main.useLanguage.getActiveLanguage().getM(), SwingConstants.CENTER);
-    private JLabel lblGuariti = new JLabel(Main.useLanguage.getActiveLanguage().getG(), SwingConstants.CENTER);
-    private JLabel lblT_I = new JLabel(Main.useLanguage.getActiveLanguage().getTi(), SwingConstants.CENTER);
-    private JLabel lblRicoverati = new JLabel(Main.useLanguage.getActiveLanguage().getR(), SwingConstants.CENTER);
-    private JLabel lblTamponi = new JLabel(Main.useLanguage.getActiveLanguage().getT(), SwingConstants.CENTER);
+    private JLabel lblPositivi = new JLabel("Positivi", SwingConstants.CENTER);
+    private JLabel lblMorti = new JLabel("Morti", SwingConstants.CENTER);
+    private JLabel lblGuariti = new JLabel("Guariti", SwingConstants.CENTER);
+    private JLabel lblT_I = new JLabel("Terapia Intensiva", SwingConstants.CENTER);
+    private JLabel lblRicoverati = new JLabel("Ricoverati", SwingConstants.CENTER);
+    private JLabel lblTamponi = new JLabel("Tamponi", SwingConstants.CENTER);
 
     // Date Difference Labels
     private JLabel lblDiffPositivi = new JLabel();
@@ -96,7 +89,7 @@ public class Covid19_Frame extends JFrame {
     private JLabel lblTotT_I = new JLabel();
     private JLabel lblTotRicoverati = new JLabel();
     private JLabel lblTotTamponi = new JLabel();
-    
+
     private JLabel lblDate = new JLabel();
 
     // Format to formatter thousands numbers of date labels
@@ -107,8 +100,6 @@ public class Covid19_Frame extends JFrame {
      * Constructor
      */
     public Covid19_Frame() {
-
-
 
         // total capacity of daysData vector
         int totCap = Main.daysData.size() - 1;
@@ -148,8 +139,7 @@ public class Covid19_Frame extends JFrame {
         lblT_I.setForeground(Color.darkGray);
         lblRicoverati.setForeground(Color.darkGray);
         lblTamponi.setForeground(Color.darkGray);
-        
-        
+
         // --------------------- LABELS DIFFERENCE ---------------------
         // Settings difference data labels TEXT
         lblDiffPositivi.setText(Main.daysData.get(totCap).getNuovi_positivi());
@@ -179,12 +169,12 @@ public class Covid19_Frame extends JFrame {
         lblDiffT_I.setText(formatter.format(Integer.parseInt(lblDiffT_I.getText())));
         lblDiffRicoverati.setText(formatter.format(Integer.parseInt(lblDiffRicoverati.getText())));
         lblDiffTamponi.setText(formatter.format(Integer.parseInt(lblDiffTamponi.getText())));
-        
+
         // Adding "+" before the formatted numbers
         if (lblDiffPositivi.getText().charAt(0) != '-') {
             lblDiffPositivi.setText("+" + lblDiffPositivi.getText());
         }
-        if( lblDiffMorti.getText().charAt(0) != '-'){
+        if (lblDiffMorti.getText().charAt(0) != '-') {
             lblDiffMorti.setText("+" + lblDiffMorti.getText());
         }
         if (lblDiffGuariti.getText().charAt(0) != '-') {
@@ -193,13 +183,13 @@ public class Covid19_Frame extends JFrame {
         if (lblDiffRicoverati.getText().charAt(0) != '-') {
             lblDiffRicoverati.setText("+" + lblDiffRicoverati.getText());
         }
-        if(lblDiffT_I.getText().charAt(0) != '-'){
+        if (lblDiffT_I.getText().charAt(0) != '-') {
             lblDiffT_I.setText("+" + lblDiffT_I.getText());
         }
         if (lblDiffTamponi.getText().charAt(0) != '-') {
             lblDiffTamponi.setText("+" + lblDiffTamponi.getText());
         }
-        
+
         // Settings difference data labels FOREGROUND
         lblDiffPositivi.setForeground(Color.red);
         lblDiffMorti.setForeground(Color.darkGray);
@@ -299,12 +289,12 @@ public class Covid19_Frame extends JFrame {
         lblTotRicoverati.setText(formatter.format(Integer.parseInt(lblTotRicoverati.getText())));
         lblTotTamponi.setText(formatter.format(Integer.parseInt(lblTotTamponi.getText())));
         // Adding "totali" before the formatted number
-        lblTotPositivi.setText(Main.useLanguage.getActiveLanguage().getTot() + " " + lblTotPositivi.getText());
-        lblTotMorti.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotMorti.getText());
-        lblTotGuariti.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotGuariti.getText());
-        lblTotT_I.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotT_I.getText());
-        lblTotRicoverati.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotRicoverati.getText());
-        lblTotTamponi.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotTamponi.getText());
+        lblTotPositivi.setText("Totali " + lblTotPositivi.getText());
+        lblTotMorti.setText("Totali " + lblTotMorti.getText());
+        lblTotGuariti.setText("Totali " + lblTotGuariti.getText());
+        lblTotT_I.setText("Totali " + lblTotT_I.getText());
+        lblTotRicoverati.setText("Totali " + lblTotRicoverati.getText());
+        lblTotTamponi.setText("Totali " + lblTotTamponi.getText());
         // Settings total data labels FOREGROUND
         lblTotPositivi.setForeground(Color.red);
         lblTotMorti.setForeground(Color.darkGray);
@@ -353,106 +343,34 @@ public class Covid19_Frame extends JFrame {
         // Addition of dataLinearChart in the southWestPanel
         dataLinearChartPnl.add(dataLinearChart.createDemoPanel());
         southWestWrapperPanel.add(dataLinearChartPnl);
-
         // Test
         southEastWrapperPanel.setLayout(new BorderLayout());
-        
-        // If internet connecction is available, addition of italyMap in the
-        // southCenterPanel
-        if (DataUploader.checkConnection()) {
-            /*
+
+        // Addition of italyMap in the southCenterPanel
+        /*
              * Addition of DataLinearChartT in the southEastPanel 70 value is obtained by
              * (italyMap.getHeight() - dataLinearChart.getHeight()) / 2) for place the
              * graphics in the center of italyMap in the Y axis
-             */
-            dataLinearChartPnl.setBorder(BorderFactory.createEmptyBorder(70, 0, 0, 0));
-            dataLinearChartTPnl.setBorder(BorderFactory.createEmptyBorder(70, 0, 0, 0));
-
-            ItalyMap italyMap = new ItalyMap(); // ItalyMap Object
-            italyMapPanel.add(italyMap);
-            southCenterWrapperPanel.add(italyMapPanel);
-        } else { // if internet connection is not available
-            // Creation of JDialog with a warning message
-            int yn = JOptionPane.showConfirmDialog(null,
-                    "        Sembrano esserci problemi di connessione all'indirizzo http://www.salute.gov.it \nSi desidera avviare ugualmente il programma?(alcune funzionalità non saranno disponibili)",
-                    "Errore di connessione", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-            // if user click "no" program will be interrupted
-            if (yn == JOptionPane.NO_OPTION) {
-                System.exit(0);
-            }
-
-            // Creation of an error message in the frame
-            JLabel lblInternetError = new JLabel(
-                    "<html>&nbsp;&nbsp;&nbsp;&nbsp;Impossibile visualizzare il grafico<BR>Controllare la connessione ad internet!</html>"); // use
-            // of
-            // html
-            // tag
-            lblInternetError.setForeground(Color.red);
-            lblInternetError.setFont(new Font("San Serif", Font.BOLD, 18));
-            italyMapPanel.add(lblInternetError);
-            southCenterWrapperPanel.add(italyMapPanel);
-        }
+         */
+        dataLinearChartPnl.setBorder(BorderFactory.createEmptyBorder(70, 0, 0, 0));
+        dataLinearChartTPnl.setBorder(BorderFactory.createEmptyBorder(70, 0, 0, 0));
+        ItalyMap italyMap = new ItalyMap(); // ItalyMap Object
+        italyMapPanel.add(italyMap);
+        southCenterWrapperPanel.add(italyMapPanel);
 
         // Adding dataLinearChartT to 
         dataLinearChartTPnl.add(dataLinearChartT.createDemoPanel());
-        southEastWrapperPanel.add(dataLinearChartTPnl , "West");
-        
+        southEastWrapperPanel.add(dataLinearChartTPnl, "West");
+
         // Date label
         String date = Main.daysData.get(totCap).getData();
-        date = Main.useLanguage.getActiveLanguage().getDateLbl() + date.substring(0 , 10);
-        lblDate.setHorizontalAlignment(4);
+        date = "Dati aggiornati al " + date.substring(0, 10);
         lblDate.setHorizontalAlignment(4);
         lblDate.setText(date);
-        lblDate.setFont(new Font("Arial" , Font.ITALIC, 15));
-
-        JPanel southEastnanoComponentsPanel = new JPanel();
-        southEastWrapperPanel.add(southEastnanoComponentsPanel , "South");
-
-        southEastnanoComponentsPanel.setLayout(new BorderLayout());
-
-        JLabel blank = new JLabel("");
-        blank.setBorder(new EmptyBorder(0,0,32,0));
-
-        // Refresh button
-        refreshBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DataUploader d = new DataUploader();
-                try{
-                    d.downloadData();
-                    d.readCsvGeneralFile();
-                    Day.calcDiffData();
-
-                    clearFrame();
-
-                } catch(Exception ex ){
-                    ex.printStackTrace();
-                }
-            }
-        });
-        refreshBtn.setSize(new Dimension(40,40));
-        refreshBtn.setBackground(new Color(247,246,242));
-        southEastnanoComponentsPanel.add(refreshBtn , "West");
-        southEastnanoComponentsPanel.add(blank , "West");
-
-        southEastnanoComponentsPanel.add(lblDate , "South");
-
-
+        lblDate.setFont(new Font("Arial", Font.ITALIC, 15));
+        southEastWrapperPanel.add(lblDate, "South");
 
         // Adding mainPanel to contentPane
         this.getContentPane().add(mainPanel);
-    }
-
-    public void clearFrame(){
-        this.setVisible(false);
-
-        Covid19_Frame frame = new Covid19_Frame();
-        frame.setBackground(new Color(247,246,242));
-        frame.setTitle("Covid Graphs");
-        frame.setResizable(false);
-        frame.setSize(1455, 850);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
     }
 }
