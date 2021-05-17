@@ -35,6 +35,13 @@ public class Main {
 
         DataUploader loader = new DataUploader(); 
 
+        // If internet connecction is available run the program
+        if (!DataUploader.checkConnection()) { // if internet connection is not available
+            // Creation of JDialog with an error message
+            JOptionPane.showMessageDialog(null,
+                    "Sembrano esserci dei problemi di connessione, controllare le impostazioni", "Connessione", JOptionPane.OK_OPTION);
+            System.exit(0); // stop of program
+        }
         // Download latest data from the COVID Github Repo
         loader.downloadData();
         loader.readCsvGeneralFile(); // upload Covid-Data csv file
