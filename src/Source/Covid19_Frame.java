@@ -11,7 +11,6 @@ package Source;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.math.RoundingMode;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -71,7 +70,7 @@ public class Covid19_Frame extends JFrame {
     private JLabel lblGuariti = new JLabel(Main.useLanguage.getActiveLanguage().getG(), SwingConstants.CENTER);
     private JLabel lblT_I = new JLabel(Main.useLanguage.getActiveLanguage().getTi(), SwingConstants.CENTER);
     private JLabel lblRicoverati = new JLabel(Main.useLanguage.getActiveLanguage().getR(), SwingConstants.CENTER);
-    private JLabel lblTamponi = new JLabel(Main.useLanguage.getActiveLanguage().getT(), SwingConstants.CENTER);
+    private JLabel lblVaccini = new JLabel(Main.useLanguage.getActiveLanguage().getT(), SwingConstants.CENTER);
 
     // Date Difference Labels
     private JLabel lblDiffPositivi = new JLabel();
@@ -79,7 +78,7 @@ public class Covid19_Frame extends JFrame {
     private JLabel lblDiffGuariti = new JLabel();
     private JLabel lblDiffT_I = new JLabel();
     private JLabel lblDiffRicoverati = new JLabel();
-    private JLabel lblDiffTamponi = new JLabel();
+    private JLabel lblDiffVaccini = new JLabel();
 
     // Date Percentage Labels
     private JLabel lblPerPositivi = new JLabel();
@@ -87,7 +86,7 @@ public class Covid19_Frame extends JFrame {
     private JLabel lblPerGuariti = new JLabel();
     private JLabel lblPerT_I = new JLabel();
     private JLabel lblPerRicoverati = new JLabel();
-    private JLabel lblPerTamponi = new JLabel();
+    private JLabel lblPerVaccini = new JLabel();
 
     // Date Total Labels
     private JLabel lblTotPositivi = new JLabel();
@@ -95,7 +94,7 @@ public class Covid19_Frame extends JFrame {
     private JLabel lblTotGuariti = new JLabel();
     private JLabel lblTotT_I = new JLabel();
     private JLabel lblTotRicoverati = new JLabel();
-    private JLabel lblTotTamponi = new JLabel();
+    private JLabel lblTotVaccini = new JLabel();
     
     private JLabel lblDate = new JLabel();
 
@@ -140,14 +139,14 @@ public class Covid19_Frame extends JFrame {
         lblGuariti.setFont(new Font("Arial", Font.PLAIN, 20));
         lblT_I.setFont(new Font("Arial", Font.PLAIN, 20));
         lblRicoverati.setFont(new Font("Arial", Font.PLAIN, 20));
-        lblTamponi.setFont(new Font("Arial", Font.PLAIN, 20));
+        lblVaccini.setFont(new Font("Arial", Font.PLAIN, 20));
         // Settings difference data labels FOREGROUND
         lblPositivi.setForeground(Color.darkGray);
         lblMorti.setForeground(Color.darkGray);
         lblGuariti.setForeground(Color.darkGray);
         lblT_I.setForeground(Color.darkGray);
         lblRicoverati.setForeground(Color.darkGray);
-        lblTamponi.setForeground(Color.darkGray);
+        lblVaccini.setForeground(Color.darkGray);
         
         
         // --------------------- LABELS DIFFERENCE ---------------------
@@ -157,28 +156,29 @@ public class Covid19_Frame extends JFrame {
         lblDiffGuariti.setText(Main.daysData.get(totCap).getNuoviGuariti());
         lblDiffT_I.setText(Main.daysData.get(totCap).getNuoviT_I());
         lblDiffRicoverati.setText(Main.daysData.get(totCap).getNuoviRicoverati());
-        lblDiffTamponi.setText(Main.daysData.get(totCap).getNuoviTamponi());
+        // Changed 21 / 05
+        lblDiffVaccini.setText(String.valueOf(Main.daysData.get(totCap).getNuoviVaccini()));
         // Settings difference data labels FONT
         lblDiffPositivi.setFont(new Font("Arial", Font.PLAIN, 36));
         lblDiffMorti.setFont(new Font("Arial", Font.PLAIN, 36));
         lblDiffGuariti.setFont(new Font("Arial", Font.PLAIN, 36));
         lblDiffT_I.setFont(new Font("Arial", Font.PLAIN, 36));
         lblDiffRicoverati.setFont(new Font("Arial", Font.PLAIN, 36));
-        lblDiffTamponi.setFont(new Font("Arial", Font.PLAIN, 36));
+        lblDiffVaccini.setFont(new Font("Arial", Font.PLAIN, 36));
         // Settings difference data labels ALIGNMENT
         lblDiffPositivi.setHorizontalAlignment(SwingConstants.CENTER);
         lblDiffMorti.setHorizontalAlignment(SwingConstants.CENTER);
         lblDiffGuariti.setHorizontalAlignment(SwingConstants.CENTER);
         lblDiffT_I.setHorizontalAlignment(SwingConstants.CENTER);
         lblDiffRicoverati.setHorizontalAlignment(SwingConstants.CENTER);
-        lblDiffTamponi.setHorizontalAlignment(SwingConstants.CENTER);
+        lblDiffVaccini.setHorizontalAlignment(SwingConstants.CENTER);
         // Creating a thousands SEPARATOR for the difference data labels
         lblDiffPositivi.setText(formatter.format(Integer.parseInt(lblDiffPositivi.getText())));
         lblDiffMorti.setText(formatter.format(Integer.parseInt(lblDiffMorti.getText())));
         lblDiffGuariti.setText(formatter.format(Integer.parseInt(lblDiffGuariti.getText())));
         lblDiffT_I.setText(formatter.format(Integer.parseInt(lblDiffT_I.getText())));
         lblDiffRicoverati.setText(formatter.format(Integer.parseInt(lblDiffRicoverati.getText())));
-        lblDiffTamponi.setText(formatter.format(Integer.parseInt(lblDiffTamponi.getText())));
+        lblDiffVaccini.setText(formatter.format(Integer.parseInt(lblDiffVaccini.getText())));
         
         // Adding "+" before the formatted numbers
         if (lblDiffPositivi.getText().charAt(0) != '-') {
@@ -196,8 +196,8 @@ public class Covid19_Frame extends JFrame {
         if(lblDiffT_I.getText().charAt(0) != '-'){
             lblDiffT_I.setText("+" + lblDiffT_I.getText());
         }
-        if (lblDiffTamponi.getText().charAt(0) != '-') {
-            lblDiffTamponi.setText("+" + lblDiffTamponi.getText());
+        if (lblDiffVaccini.getText().charAt(0) != '-') {
+            lblDiffVaccini.setText("+" + lblDiffVaccini.getText());
         }
         
         // Settings difference data labels FOREGROUND
@@ -206,7 +206,7 @@ public class Covid19_Frame extends JFrame {
         lblDiffGuariti.setForeground(new Color(0, 154, 220));
         lblDiffT_I.setForeground(new Color(247, 128, 128));
         lblDiffRicoverati.setForeground(new Color(247, 128, 128));
-        lblDiffTamponi.setForeground(new Color(247, 128, 128));
+        lblDiffVaccini.setForeground(new Color(247, 128, 128));
 
         // --------------------- LABELS PERCENTAGE ---------------------
         // Rounding
@@ -226,22 +226,24 @@ public class Covid19_Frame extends JFrame {
         lblPerT_I.setText(temp + "%");
         temp = df.format(((Double.parseDouble(Main.daysData.get(totCap).getRicoverati_con_sintomi()) - (Double.parseDouble(Main.daysData.get(totCap - 1).getRicoverati_con_sintomi()))) / Double.parseDouble(Main.daysData.get(totCap - 1).getRicoverati_con_sintomi()) * 100));
         lblPerRicoverati.setText(temp + "%");
-        temp = df.format(((Double.parseDouble(Main.daysData.get(totCap).getTamponi()) - (Double.parseDouble(Main.daysData.get(totCap - 1).getTamponi()))) / Double.parseDouble(Main.daysData.get(totCap - 1).getTamponi()) * 100));
-        lblPerTamponi.setText(temp + "%");
+        // Da fixare mettendo i vaccini totali di ogni giorno
+        // temp = df.format(((Double.parseDouble(String.valueOf(Main.daysData.get(totCap).getNuoviVaccini()) ) - (Double.parseDouble(String.valueOf(Main.daysData.get(totCap - 1).getNuoviVaccini()))) / Double.parseDouble(String.valueOf(Main.daysData.get(totCap -1 ).getNuoviVaccini()))) * 100));
+        temp = df.format(((Double.valueOf(Main.daysData.get(totCap).getNuoviVaccini()) - (Double.valueOf(Main.daysData.get(totCap - 1).getNuoviVaccini()))) / Double.valueOf(Main.daysData.get(totCap - 1).getNuoviVaccini()) * 100));
+        lblPerVaccini.setText(temp + "%");
         // Settings percetage data labels FONT
         lblPerPositivi.setFont(new Font("Arial", Font.PLAIN, 20));
         lblPerMorti.setFont(new Font("Arial", Font.PLAIN, 20));
         lblPerGuariti.setFont(new Font("Arial", Font.PLAIN, 20));
         lblPerT_I.setFont(new Font("Arial", Font.PLAIN, 20));
         lblPerRicoverati.setFont(new Font("Arial", Font.PLAIN, 20));
-        lblPerTamponi.setFont(new Font("Arial", Font.PLAIN, 20));
+        lblPerVaccini.setFont(new Font("Arial", Font.PLAIN, 20));
         // Settings percetage data labels ALIGNMENT
         lblPerPositivi.setHorizontalAlignment(SwingConstants.CENTER);
         lblPerMorti.setHorizontalAlignment(SwingConstants.CENTER);
         lblPerGuariti.setHorizontalAlignment(SwingConstants.CENTER);
         lblPerT_I.setHorizontalAlignment(SwingConstants.CENTER);
         lblPerRicoverati.setHorizontalAlignment(SwingConstants.CENTER);
-        lblPerTamponi.setHorizontalAlignment(SwingConstants.CENTER);
+        lblPerVaccini.setHorizontalAlignment(SwingConstants.CENTER);
         // Adding "+" before the rounded numbers
         if (lblPerPositivi.getText().charAt(0) != '-') {
             lblPerPositivi.setText("+" + lblPerPositivi.getText());
@@ -258,8 +260,8 @@ public class Covid19_Frame extends JFrame {
         if (lblPerRicoverati.getText().charAt(0) != '-') {
             lblPerRicoverati.setText("+" + lblPerRicoverati.getText());
         }
-        if (lblPerTamponi.getText().charAt(0) != '-') {
-            lblPerTamponi.setText("+" + lblPerTamponi.getText());
+        if (lblPerVaccini.getText().charAt(0) != '-') {
+            lblPerVaccini.setText("+" + lblPerVaccini.getText());
         }
         // Settings percetage data labels FOREGROUND
         lblPerPositivi.setForeground(Color.red);
@@ -267,7 +269,7 @@ public class Covid19_Frame extends JFrame {
         lblPerGuariti.setForeground(new Color(0, 154, 220));
         lblPerT_I.setForeground(new Color(247, 128, 128));
         lblPerRicoverati.setForeground(new Color(247, 128, 128));
-        lblPerTamponi.setForeground(new Color(247, 128, 128));
+        lblPerVaccini.setForeground(new Color(247, 128, 128));
 
         // --------------------- LABELS TOTALS ---------------------
         // Settings total data labels TEXT
@@ -276,42 +278,42 @@ public class Covid19_Frame extends JFrame {
         lblTotGuariti.setText(Main.daysData.get(totCap).getDimessi_guariti());
         lblTotT_I.setText(Main.daysData.get(totCap).getTerapia_intensiva());
         lblTotRicoverati.setText(Main.daysData.get(totCap).getRicoverati_con_sintomi());
-        lblTotTamponi.setText(Main.daysData.get(totCap).getTamponi());
+        lblTotVaccini.setText(String.valueOf(Main.daysData.get(totCap).getVacciniTotali()));
         // Settings total data labels FONT
         lblTotPositivi.setFont(new Font("Arial", Font.BOLD, 20));
         lblTotMorti.setFont(new Font("Arial", Font.BOLD, 20));
         lblTotGuariti.setFont(new Font("Arial", Font.BOLD, 20));
         lblTotT_I.setFont(new Font("Arial", Font.BOLD, 20));
         lblTotRicoverati.setFont(new Font("Arial", Font.BOLD, 20));
-        lblTotTamponi.setFont(new Font("Arial", Font.BOLD, 20));
+        lblTotVaccini.setFont(new Font("Arial", Font.BOLD, 20));
         // Settings total data labels ALIGNMENT
         lblTotPositivi.setHorizontalAlignment(SwingConstants.CENTER);
         lblTotMorti.setHorizontalAlignment(SwingConstants.CENTER);
         lblTotGuariti.setHorizontalAlignment(SwingConstants.CENTER);
         lblTotT_I.setHorizontalAlignment(SwingConstants.CENTER);
         lblTotRicoverati.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTotTamponi.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTotVaccini.setHorizontalAlignment(SwingConstants.CENTER);
         // Creating a thousands SEPARATOR for the total data labels
         lblTotPositivi.setText(formatter.format(Integer.parseInt(lblTotPositivi.getText())));
         lblTotMorti.setText(formatter.format(Integer.parseInt(lblTotMorti.getText())));
         lblTotGuariti.setText(formatter.format(Integer.parseInt(lblTotGuariti.getText())));
         lblTotT_I.setText(formatter.format(Integer.parseInt(lblTotT_I.getText())));
         lblTotRicoverati.setText(formatter.format(Integer.parseInt(lblTotRicoverati.getText())));
-        lblTotTamponi.setText(formatter.format(Integer.parseInt(lblTotTamponi.getText())));
+        lblTotVaccini.setText(formatter.format(Integer.parseInt(lblTotVaccini.getText())));
         // Adding "totali" before the formatted number
         lblTotPositivi.setText(Main.useLanguage.getActiveLanguage().getTot() + " " + lblTotPositivi.getText());
         lblTotMorti.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotMorti.getText());
         lblTotGuariti.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotGuariti.getText());
         lblTotT_I.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotT_I.getText());
         lblTotRicoverati.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotRicoverati.getText());
-        lblTotTamponi.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotTamponi.getText());
+        lblTotVaccini.setText(Main.useLanguage.getActiveLanguage().getTot() + " "+ lblTotVaccini.getText());
         // Settings total data labels FOREGROUND
         lblTotPositivi.setForeground(Color.red);
         lblTotMorti.setForeground(Color.darkGray);
         lblTotGuariti.setForeground(new Color(0, 154, 220));
         lblTotT_I.setForeground(new Color(247, 128, 128));
         lblTotRicoverati.setForeground(new Color(247, 128, 128));
-        lblTotTamponi.setForeground(new Color(247, 128, 128));
+        lblTotVaccini.setForeground(new Color(247, 128, 128));
 
         // North main panel adding components
         // date
@@ -320,28 +322,28 @@ public class Covid19_Frame extends JFrame {
         dateLlbPanel.add(lblGuariti);
         dateLlbPanel.add(lblT_I);
         dateLlbPanel.add(lblRicoverati);
-        dateLlbPanel.add(lblTamponi);
+        dateLlbPanel.add(lblVaccini);
         // diff
         dateLlbPanel.add(lblDiffPositivi);
         dateLlbPanel.add(lblDiffMorti);
         dateLlbPanel.add(lblDiffGuariti);
         dateLlbPanel.add(lblDiffT_I);
         dateLlbPanel.add(lblDiffRicoverati);
-        dateLlbPanel.add(lblDiffTamponi);
+        dateLlbPanel.add(lblDiffVaccini);
         // perc
         dateLlbPanel.add(lblPerPositivi);
         dateLlbPanel.add(lblPerMorti);
         dateLlbPanel.add(lblPerGuariti);
         dateLlbPanel.add(lblPerT_I);
         dateLlbPanel.add(lblPerRicoverati);
-        dateLlbPanel.add(lblPerTamponi);
+        dateLlbPanel.add(lblPerVaccini);
         // tot
         dateLlbPanel.add(lblTotPositivi);
         dateLlbPanel.add(lblTotMorti);
         dateLlbPanel.add(lblTotGuariti);
         dateLlbPanel.add(lblTotT_I);
         dateLlbPanel.add(lblTotRicoverati);
-        dateLlbPanel.add(lblTotTamponi);
+        dateLlbPanel.add(lblTotVaccini);
 
         // PieChartPanel settings
         pieChartPanel.add(pieChart.createDemoPanel());

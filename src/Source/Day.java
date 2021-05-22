@@ -10,6 +10,8 @@ package Source;
 
 public class Day{
     private String data,stato,ricoverati_con_sintomi,terapia_intensiva,totale_ospedalizzati,isolamento_domiciliare,totale_positivi,variazione_totale_positivi,nuovi_positivi,dimessi_guariti,deceduti,casi_da_sospetto_diagnostico,casi_da_screening,totale_casi,tamponi,casi_testati,note,ingressi_terapia_intensiva,note_test,note_casi,totale_positivi_test_molecolare,totale_positivi_test_antigenico_rapido,tamponi_test_molecolare,tamponi_test_antigenico_rapido;
+    int nuoviVaccini;
+    int vacciniTotali = 0;
     // Calculated data
     private static String nuoviMorti , nuoviGuariti, nuoviT_I, nuoviRicoverati, nuoviTamponi;
     /**
@@ -37,7 +39,6 @@ public class Day{
      * @param totale_positivi_test_molecolare
      * @param totale_positivi_test_antigenico_rapido
      * @param tamponi_test_molecolare
-     * @param tamponi_test_antigenico_rapido
      */
     public Day(String data, String stato, String ricoverati_con_sintomi, String terapia_intensiva, String totale_ospedalizzati, String isolamento_domiciliare, String totale_positivi, String variazione_totale_positivi, String nuovi_positivi, String dimessi_guariti, String deceduti, String casi_da_sospetto_diagnostico, String casi_da_screening, String totale_casi, String tamponi, String casi_testati, String note, String ingressi_terapia_intensiva, String note_test, String note_casi, String totale_positivi_test_molecolare, String totale_positivi_test_antigenico_rapido, String tamponi_test_molecolare, String tamponi_test_antigenico_rapido) {
         this.data = data;
@@ -108,6 +109,25 @@ public class Day{
     }
     
     // getters and setters
+
+    public  void setVacciniTotali(int n ){
+        vacciniTotali = n;
+    }
+
+    public  int getVacciniTotali(){
+        return vacciniTotali;
+    }
+
+    public void addNuoviVaccini(int n){
+        nuoviVaccini += n;
+    }
+
+    public int getNuoviVaccini(){
+        return nuoviVaccini;
+    }
+    public void setNuoviVaccini(int n){
+        nuoviVaccini = n;
+    }
 
     public String getNuoviMorti(){
         return this.nuoviMorti;

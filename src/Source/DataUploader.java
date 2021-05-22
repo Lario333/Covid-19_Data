@@ -10,14 +10,15 @@ package Source;
 
 import static Source.ItalyMap.colors;
 import static Source.Main.daysData;
+import static Source.Main.main;
+
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.Buffer;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -27,8 +28,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.FileWriter;
-
 
 /**
  * Download csv file from https://lab24.ilsole24ore.com/coronavirus/# this file
@@ -37,6 +36,7 @@ import java.io.FileWriter;
 public class DataUploader {
 
     String path = "src/Data/Italia-trend-giornaliero.csv";
+    String vacPath = "src/Data/Italia-dati-vaccini.csv";
     String settingsPath = "src/../settings.txt";
 
     /**
@@ -59,12 +59,54 @@ public class DataUploader {
     }
 
     /**
+     * Method to read vaccines data from italian government github
+     * @throws IOException
+     */
+    public void downloadVaccinesData() throws IOException {
+        FileWriter fw = new FileWriter(vacPath , true);
+
+        URL url = new URL("https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/somministrazioni-vaccini-latest.csv");
+        BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+
+        String line;
+
+        while ((line = br.readLine()) != null) {
+//            System.out.println(line);
+            fw.write(line + "\n");
+        }
+        fw.close();
+    }
+
+    public static int getTotalVaccines() throws IOException{
+        File file = new File("src/Data/Italia-dati-vaccini.csv");
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        String line ;
+        String[] lineData; // 22 splits
+        int tamponi = 0 ;
+        br.readLine();
+
+        try{
+            while( (line = br.readLine()) != null){
+                lineData = line.split(",");
+                tamponi += Integer.parseInt(lineData[4]);
+                tamponi += Integer.parseInt(lineData[5]);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return tamponi;
+    }
+
+    /**
      * Method to download covid data from the official COVID Github Repo and write it into the csv data file
      * 
      * @throws IOException
      */
     public void downloadData() throws IOException {
         this.clearData();
+        downloadVaccinesData();
          FileWriter fw = new FileWriter(path, true);
         
         Document doc = Jsoup.connect("https://github.com/pcm-dpc/COVID-19/blob/master/dati-andamento-nazionale/dpc-covid19-ita-andamento-nazionale.csv").get();
@@ -110,6 +152,21 @@ public class DataUploader {
             fw.write("\n");
         }
         fw.close();
+
+        // Downloading vaccines data
+
+        FileWriter fw1 = new FileWriter(vacPath , true);
+
+        URL url = new URL("https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/somministrazioni-vaccini-latest.csv");
+        BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+
+        String line;
+
+        while ((line = br.readLine()) != null) {
+            fw1.write(line + "\n");
+        }
+        fw1.close();
+
     }
     /**
      * clearData
@@ -120,6 +177,10 @@ public class DataUploader {
         FileWriter fw = new FileWriter(path);
         fw.write("");
         fw.close();
+
+        FileWriter fw2 = new FileWriter(vacPath);
+        fw2.write("");
+        fw2.close();
     }
 
     /**
@@ -142,7 +203,89 @@ public class DataUploader {
         } catch (Exception e ){
             e.printStackTrace();
         }
+
+        /**
+         * Adding daily vaccines and daily total vaccines
+         */
+        line = "";
+        // Adding daily vaccines
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(vacPath));
+            br.readLine();
+            int counter = 0;
+            while( (line = br.readLine()) != null) {
+                String[] v = line.split(",");
+                
+                for(int i = 0 ; i < Main.daysData.size() ; i++ ) {
+                    if (v[0].equals(Main.daysData.get(i).getData().substring( 0, 10 ))){
+                        Main.daysData.get(i).addNuoviVaccini(Integer.parseInt(v[4]));
+                        Main.daysData.get(i).addNuoviVaccini(Integer.parseInt(v[5]));
+                    } else {
+                        continue;
+                    }
+                }
+                counter++ ; 
+            }
+            br.close();
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+
+        line = "";
+
+        // Adding total vaccines
+        try{
+            BufferedReader br2 = new BufferedReader(new FileReader(vacPath));
+            br2.readLine();
+            String tempDate = "";
+            int totalVaccines = 0;
+            // daily total vaccines
+            while ((line = br2.readLine()) != null){
+
+                String[] v = line.split(",");
+
+                if (tempDate.equals("")){
+                    tempDate = v[0].substring(0,10);
+                    totalVaccines += Integer.parseInt(v[4]);
+                    totalVaccines += Integer.parseInt(v[5]);
+                } else if (tempDate.equals(v[0].substring(0,10))){
+                    totalVaccines += Integer.parseInt(v[4]);
+                    totalVaccines += Integer.parseInt(v[5]);
+                } else {
+                    // System.out.println("v[0]: "+v[0].substring(0,10));
+                    // System.out.println("tempDate: "+tempDate);
+
+                    for(int i = 0 ; i < Main.daysData.size() ; i++){
+                        if ( Main.daysData.get(i).getData().substring(0,10).equals(tempDate) ) {
+                            
+                            totalVaccines += Main.daysData.get(i - 1).getVacciniTotali();
+                            Main.daysData.get(i).setVacciniTotali(totalVaccines);
+                        }
+                    }
+                    // System.out.println("totale fatto, giorno: "+ tempDate+ " vaccini: " + totalVaccines);
+                    // System.out.println("Giorno attuale: "+v[0].substring(0,10));
+                    totalVaccines = 0;
+                    tempDate = "";
+                    try{
+                        totalVaccines += Integer.parseInt(v[4]);
+                        totalVaccines += Integer.parseInt(v[5]);
+                    } catch (NumberFormatException e ) {
+                        break;
+                    }
+                }
+
+                
+            }
+            br2.close();
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+
+        line = "" ;
+
     }
+
+
 
     /**
      * Returns the BufferedImage of the argument

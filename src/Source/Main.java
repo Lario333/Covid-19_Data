@@ -43,7 +43,7 @@ public class Main {
             System.exit(0); // stop of program
         }
         // Download latest data from the COVID Github Repo
-        loader.downloadData();
+        loader.downloadData();        
         loader.readCsvGeneralFile(); // upload Covid-Data csv file
         useLanguage.setActiveLanguage(loader.checkLanguage());
         Day.calcDiffData();
