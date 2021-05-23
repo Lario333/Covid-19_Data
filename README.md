@@ -18,7 +18,7 @@
 <h2>Prerequisites</h2>
 <ul>
   <li>A Full HD monitor</li>
-  <li>The latest version of the <a href="https://www.oracle.com/java/technologies/javase-jdk16-downloads.html" target="_blank">JDK</a></li>
+  <li>The latest version of the <a href="https://www.java.com/it/download/manual.jsp" target="_blank">JDK</a></li>
 </ul>
 <h2>Languages</h2>
 <p>To change language change it in settings.txt , now available only Italian and English</p>
