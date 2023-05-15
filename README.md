@@ -1,6 +1,6 @@
 # Covid-19_Data
 <h2>The Project</h2>
-<p>Covid-19_Data is a simple project to visualize Covid-19 updated datas everyday</p>
+<p>Covid-19_Data is a simple project coded in <b>Java</b> to visualize Covid-19 updated datas everyday</p>
 <img src="readme_header.png">
 <h2>How to use</h2>
 <p>To use the program just open the "dist" folder and run the .jar file</p>
